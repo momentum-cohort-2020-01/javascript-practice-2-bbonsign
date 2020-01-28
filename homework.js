@@ -6,17 +6,67 @@
 // If the potential member is not in the array, return the array unchanged.
 // If the potential member is in the array, remove all instances of it from the array.
 
+
+function removeSideEffect(arr, item) {
+    while (arr.includes(item)) {
+        arr.splice(arr.indexOf(item), 1);
+    }
+    return arr;
+}
+
+function remove(arr, item) {
+    let arrCopy = arr.slice();
+    while (arrCopy.includes(item)) {
+        arrCopy.splice(arrCopy.indexOf(item), 1);
+    }
+    return arrCopy;
+}
+
 // 2. Revisit your "remove" function. Make sure that it does not change the original
 // array but instead returns a new array.
+
+// *********** Modified above the above remove function *************
 
 // 3. Create a function called "sum" that takes an array of numbers and
 // returns the sum of those numbers.
 
+function sum(arr) {
+    let sum = 0;
+    if (arr.length == 0) {
+        return 0;
+    }
+    for (let item of arr) {
+        sum += item;
+    }
+    return sum;
+}
+
 // 4. Create a function called "average" that takes an array of numbers
 // and returns the average of those numbers.
 
+function average(arr) {
+    if (arr.length == 0) {
+        return undefined;
+    }
+    return sum(arr) / arr.length;
+}
+
 // 5. Create a function called "minimum" that takes an array of numbers and
 // returns the smallest number in that array.
+
+function minimum(arr) {
+    if (arr.length == 0) {
+        return undefined;
+    }
+    // return arr.reduce(( currentMin, item) => { if (item <= currentMin) { currentMin = item; return currentMin; } });
+    let min = arr[0];
+    for (let item of arr) {
+        if (item < min) {
+            min = item;
+        }
+    }
+    return min;
+}
 
 // 6. There are many techniques to sort arrays in programming. Your programming
 // language will likely include the ability to do this. We are going to
@@ -42,8 +92,46 @@
 // https://courses.cs.vt.edu/csonline/Algorithms/Lessons/SelectionSort/index.html
 // to see how. This may make more sense to you.
 
+function selectionSort(arr) {
+    // if (arr.length == 0) {
+    //     return [];
+    // }
+
+    let arrCopy = arr.slice();
+
+    for (let i = 0; i < arr.length; i++) {
+        let slice = arrCopy.splice(i);
+        let m = minimum(slice);
+        slice.splice(slice.indexOf(m), 1);
+        slice.unshift(m);
+        for (let item of slice) {
+            arrCopy.push(item);
+        }
+    }
+    return arrCopy
+}
+
+
 // 7. Create a function called `textList` that takes an array and joins its elements
 // into a string separated by commas.
 //
 // For example, `textList(['Cadence', 'Ordel', 'Marion'])` results in the string
 // `"Cadence,Ordel,Marion"`.
+
+function textList(arr) {
+    if (arr.length == 0) {
+        return "";
+    }
+    else if (arr.length == 1) {
+        return arr[0];
+    }
+    else {
+        let str = "";
+        for (let i = 0; i < arr.length - 1; i++) {
+            str += arr[i] + ",";
+        }
+
+        str += arr[arr.length-1];
+        return str;
+    }
+}

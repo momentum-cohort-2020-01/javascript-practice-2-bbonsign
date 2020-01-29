@@ -93,6 +93,16 @@ function minimum(arr) {
 // to see how. This may make more sense to you.
 
 function selectionSort(arr) {
+    let arrCopy = arr.slice();
+    let arrSorted = [];
+    while (arrCopy.length > 0) {
+        let m = minimum(arrCopy);
+        arrSorted.push(arrCopy.splice(arrCopy.indexOf(m), 1)[0]);
+    }
+    return arrSorted;
+}
+
+function selectionSortOld(arr) {
     // if (arr.length == 0) {
     //     return [];
     // }
@@ -100,17 +110,18 @@ function selectionSort(arr) {
     let arrCopy = arr.slice();
 
     for (let i = 0; i < arr.length; i++) {
-        let slice = arrCopy.splice(i);
-        let m = minimum(slice);
-        slice.splice(slice.indexOf(m), 1);
-        slice.unshift(m);
-        for (let item of slice) {
+        let end = arrCopy.splice(i);
+
+        let m = minimum(end);
+
+        end.splice(end.indexOf(m), 1);
+        end.unshift(m);
+        for (let item of end) {
             arrCopy.push(item);
         }
     }
     return arrCopy
 }
-
 
 // 7. Create a function called `textList` that takes an array and joins its elements
 // into a string separated by commas.
@@ -131,7 +142,7 @@ function textList(arr) {
             str += arr[i] + ",";
         }
 
-        str += arr[arr.length-1];
+        str += arr[arr.length - 1];
         return str;
     }
 }

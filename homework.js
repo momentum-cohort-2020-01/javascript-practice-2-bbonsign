@@ -14,12 +14,22 @@ function removeSideEffect(arr, item) {
     return arr;
 }
 
-function remove(arr, item) {
+function removeAlt(arr, item) {
     let arrCopy = arr.slice();
     while (arrCopy.includes(item)) {
         arrCopy.splice(arrCopy.indexOf(item), 1);
     }
     return arrCopy;
+}
+
+function remove(arr, item) {
+    let arrRet = [];
+    for (let i=0 ; i<arr.length ; i++) {
+        if (arr[i] != item){
+            arrRet.push(arr[i]);
+        }
+    }
+    return arrRet;
 }
 
 // 2. Revisit your "remove" function. Make sure that it does not change the original

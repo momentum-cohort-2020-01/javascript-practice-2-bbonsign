@@ -65,9 +65,9 @@ function average(arr) {
 // returns the smallest number in that array.
 
 function minimum(arr) {
-    if (arr.length == 0) {
-        return undefined;
-    }
+    // if (arr.length == 0) {
+    //     return undefined;
+    // }
     // return arr.reduce(( currentMin, item) => { if (item <= currentMin) { currentMin = item; return currentMin; } });
     let min = arr[0];
     for (let item of arr) {

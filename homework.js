@@ -24,9 +24,9 @@ function removeAlt(arr, item) {
 
 function remove(arr, item) {
     let arrRet = [];
-    for (let i=0 ; i<arr.length ; i++) {
-        if (arr[i] != item){
-            arrRet.push(arr[i]);
+    for ( let element of arr ) {
+        if (element != item){
+            arrRet.push(element);
         }
     }
     return arrRet;
